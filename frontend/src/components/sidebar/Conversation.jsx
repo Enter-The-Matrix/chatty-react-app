@@ -1,7 +1,10 @@
+import { useSocketContext } from "../../context/SocketContext";
 import useConversation from "../../zustand/useConversation";
 
 function Conversation({ conversation, lastIdx, emoji }) {
   const { selectedConversation, setSelectedConversation } = useConversation();
+  const {onlineUsers} = useSocketContext()
+  const isOnline = onlineUsers.includes(conversation._id)
 
   const isSelected = selectedConversation?._id === conversation._id;
 
@@ -12,7 +15,7 @@ function Conversation({ conversation, lastIdx, emoji }) {
     p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`}
     onClick={()=>{setSelectedConversation(conversation)}}
       >
-        <div className="avatar online">
+        <div className={` avatar ${isOnline? "online":""}`}>
           <div className="w-16 rounded-full">
             <img src={conversation.profilePic} />
           </div>

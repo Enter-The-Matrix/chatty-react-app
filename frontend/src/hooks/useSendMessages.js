@@ -9,7 +9,7 @@ function useSendMessages() {
     const {messages, setMessages, selectedConversation} = useConversation()
 
     const sendMessage = async (message) =>{
-console.log(message);
+// console.log(message);
         setLoading(true)
         try {
 
